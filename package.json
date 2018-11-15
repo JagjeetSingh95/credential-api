@@ -1,0 +1,26 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Node express Mangodb",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo\"Error:no test specified\"&& exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "jagjeet singh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "crypto": "^1.0.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.12",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4"
+  }
+}
