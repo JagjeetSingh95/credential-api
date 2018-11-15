@@ -27,6 +27,9 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/', function(req, res){
+    res.json({ message: 'ok' });
+});
 app.use('/credential', credentialRoute);
 app.use('/auth', userRoute);
 
