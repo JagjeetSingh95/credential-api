@@ -115,10 +115,13 @@ router.post('/login', (req, res, next) => {
                     },
 
                  );
+                 const decoded = jwt.verify(token, JWT_KEY);
                   return res.status(200).json({
                     msg: 'Login successfully',
                     token: token,
-                    email: user[0].email
+                    expTime: decoded.exp,
+                    email: user[0].email,
+                    name: user[0].name
                   });
                 }
                 return res.status(401).json({
