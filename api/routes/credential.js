@@ -48,6 +48,25 @@ router.get('/', authCheck, (req, res, next) => {
         });
 });
 
+router.get('/default', authCheck, (req, res, next) => {
+    const JWT_KEY = "codingapp";
+    const token = req.headers.authorization.split(" ")[1];
+    const decoded = jwt.verify(token, JWT_KEY);
+    let user_id = decoded.userId;
+        Credential.findOne({userId: user_id})
+            .exec().then(response => {
+                 res.status(200).json({
+                    count: response.length,
+                    response: response.map(item =>
+                        {
+                          return {...(item._doc), password : decrypt(item.password)};
+                        })
+                });
+            }).catch(err => {
+                res.status(200).json({response: err});
+        });
+});
+
 router.post('/', authCheck, (req, res, next) => {
     const JWT_KEY = "codingapp";
     const token = req.headers.authorization.split(" ")[1];
