@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const credentialRoute = require('./api/routes/credential');
-const userRoute = require('./api/routes/user')
+const userRoute = require('./api/routes/user');
+const shareRoute = require('./api/routes/share');
 
 mongoose.connect('mongodb://jaggi:jaggi123@ds163013.mlab.com:63013/credential', { useNewUrlParser: true });
 
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 // });
 app.use('/credential', credentialRoute);
 app.use('/auth', userRoute);
+app.use('/share', shareRoute);
 
 app.use((req, res, next) => {
     const error = new Error('Not Found');

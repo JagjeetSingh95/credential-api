@@ -29,7 +29,6 @@ function decrypt(text){
     return dec;
 }
 
-
 router.get('/', authCheck, (req, res, next) => {
     const JWT_KEY = "codingapp";
     const token = req.headers.authorization.split(" ")[1];

@@ -60,6 +60,19 @@ router.get('/signup', authCheck, (req, res, next) => {
         });
 });
 
+router.get('/users',authCheck, (req, res, next) => {
+    User.find().select('name email _id')
+        .exec().then(
+            response => {
+                res.status(200).json({
+                    response: response
+                })
+            }).catch(
+              error => {
+                res.status(500).json({error: error});
+            });
+});
+
 router.get('/:userId', authCheck, (req, res, next) => {
     const id = req.params.userId;
     User.findById(id)
