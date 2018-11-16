@@ -119,7 +119,7 @@ router.post('/login', (req, res, next) => {
                   return res.status(200).json({
                     msg: 'Login successfully',
                     token: token,
-                    expTime: decoded.exp,
+                    expTime: decoded.exp+'000',
                     email: user[0].email,
                     name: user[0].name
                   });
