@@ -57,10 +57,15 @@ router.get('/default', authCheck, (req, res, next) => {
             .exec().then(response => {
                  res.status(200).json({
                     count: response.length,
-                    response: response.map(item =>
-                        {
-                          return {...(item._doc), password : decrypt(item.password)};
-                        })
+                    response: {
+                        _id: response._id,
+                        userId: response.userId,
+                        title: response.title,
+                        email: response.email,
+                        password: decrypt(response.password),
+                        description: response.description,
+                        date: response.date,  
+                    }
                 });
             }).catch(err => {
                 res.status(200).json({response: err});
