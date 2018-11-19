@@ -124,7 +124,7 @@ router.post('/login', (req, res, next) => {
                     }, 
                     JWT_KEY, 
                     {
-                        expiresIn: "1m"
+                        expiresIn: "1h"
                     },
 
                  );
