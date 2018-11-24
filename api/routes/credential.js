@@ -34,12 +34,15 @@ router.get('/', authCheck, (req, res, next) => {
     const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, JWT_KEY);
     let user_id = decoded.userId;
+    console.log(user_id);
         Credential.find({userId: user_id})
             .exec().then(response => {
+                // console.log(response)
                  res.status(200).json({
                     count: response.length,
                     response: response.map(item =>
                         {
+                            console.log(item)
                           return {...(item._doc), password : decrypt(item.password)};
                         })
                 });
@@ -117,7 +120,7 @@ router.put('/:credentialId', authCheck, (req, res, next) => {
     const updateOps = {
         title: req.body.title,
         email: req.body.email,
-        password: req.body.password,
+        password: encrypt(req.body.password),
         description: req.body.description
     };
     Credential.update({ _id: id }, { $set: updateOps })
